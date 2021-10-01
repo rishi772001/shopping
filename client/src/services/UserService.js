@@ -11,5 +11,9 @@ class UserService {
   addUser(data) {
     return axios.post(USER_API_URL, data);
   }
+
+  getAllPurchases(id){
+    return axios.get(USER_API_URL + id);
+  }
 }
 export default new UserService();

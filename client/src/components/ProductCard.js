@@ -8,14 +8,15 @@ import Typography from '@mui/material/Typography';
 import ProductService from '../services/ProductService';
 
 export default function ProductCard(props) {
-  function buy(id, price){
+  function buy(){
     let userId = localStorage.getItem("userId");
-    ProductService.buy(userId, id, price).then(() => {
+    ProductService.buy(userId, props.id, props.price)
+    .then(() => {
       alert("Succes, Thank You")
     })
   }
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 250 }}>
       <CardMedia
         component="img"
         height="140"
@@ -27,11 +28,11 @@ export default function ProductCard(props) {
           {props.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {props.price}
+          Rs. {props.price}\-
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={() => buy(props.id, props.price)}>Buy</Button>
+        <Button size="small" onClick={buy}>Buy</Button>
       </CardActions>
     </Card>
   );
